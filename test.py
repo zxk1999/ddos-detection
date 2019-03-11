@@ -1,4 +1,4 @@
-f = open("2019_02_26_00_15_09.pcap.flow","r")
+f = open("f.flow","r")
 dict={}
 dict_1={}
 data = f.read()
@@ -9,12 +9,12 @@ for i in range(1,n-1):
     line = line.split(' ')
     while '' in line:
         line.remove('')
-    if line[5] in dict:
-        dict[line[5]]+=1
-        dict_1[line[5]]+=int(line[-2])
+    if line[4] in dict:
+        dict[line[4]]+=1
+        dict_1[line[4]]+=int(line[-2])    #在测试用f.flow文件中，目的IP、流量分别对应line[4]、line[-2],实际使用时应根据netflow包的具体格式加以修改。
     else:
-        dict[line[5]]=1
-        dict_1[line[5]]=int(line[-2])
+        dict[line[4]]=1
+        dict_1[line[4]]=int(line[-2])
 dict=sorted(dict.items(),key=lambda x:x[1],reverse=True)
 dict_1=sorted(dict_1.items(),key=lambda x:x[1],reverse=True)
 print("Sorted by total number of connections")
